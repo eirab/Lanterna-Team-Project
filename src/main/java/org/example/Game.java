@@ -44,6 +44,7 @@ public class Game {
     public void handleKeyStroke(KeyStroke key) throws IOException {
         switch(key.getKeyType()){
             case ArrowLeft:
+                screen.clearOldPosition(player);
                 player.moveLeft();
                 break;
             case Escape:
@@ -52,7 +53,9 @@ public class Game {
                 System.out.println("quit");
                 break;
 
-            case ArrowRight: player.moveRight();
+            case ArrowRight:
+                screen.clearOldPosition(player);
+                player.moveRight();
             break;
         }
     }

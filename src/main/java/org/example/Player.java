@@ -25,6 +25,7 @@ public class Player {
     }
 
     public void moveRight() {
+        position.setX(getX()+2);
     }
 
 

@@ -27,11 +27,18 @@ public class Screen {
 
     }
 
+    //Draws player based on its position
     public void drawPlayer(Player player) throws IOException {
         terminal.setCursorPosition(player.getX(), player.getY());
-        terminal.putCharacter(' ');
         terminal.putCharacter(player.PLAYER_CHARACTER);
         terminal.flush();
+    }
+
+    public void clearOldPosition(Player player) throws IOException {
+        terminal.setCursorPosition(player.getX(), player.getY());
+        terminal.putCharacter(' ');
+        terminal.flush();
+
     }
 
     public Terminal getTerminal(){
