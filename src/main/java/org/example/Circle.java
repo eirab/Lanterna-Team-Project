@@ -4,14 +4,34 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Circle {
+
+    private static final int N_CIRCLES_START = 4;
     public final char circle = 'O';
     private Position position;
     private ArrayList<Circle> circles;
-    private Random rand;
+
+
 
     //Constructor här
     public Circle() {
-        position = new Position(0, 0);
+
+
+
+    }
+
+    public Circle(Position position) {
+        this.position = position;
+
+    }
+
+    public ArrayList<Circle> initialiseCircles() {
+        ArrayList<Circle> startCircles = null;
+        for(int i = 0; i < N_CIRCLES_START; i++ ){
+            Position position = new Position(getRandomXPosition(), 0);
+            Circle circle  = new Circle(position);
+            startCircles.add(circle);
+        }
+        this.circles = startCircles;
     }
 
     public int getX() {
@@ -22,23 +42,41 @@ public class Circle {
         return position.y;
     }
 
-    //METOD: kolla om äpplet blir fångad, eller ramlar i marken (och ska då försvinna)
-    public void fallingCircle() {
-        position.setY(getY() + 3);
-        for (int y = 0; y < 81; y++) {
-            terminal.setCirclePosition(5, row); // go to position(column, row)
-            terminal.putCharacter('O');
-        }
+
+    private int getRandomXPosition(){
+        Random x = new Random(80);
+        return x.nextInt();
     }
 
 
-    //METOD som loopar och genererar fler äpplen hela tiden
-    public char generateCircle() {
-        rand = new Random();
-        return circle;
+
+    //Has a circle touched the ground?
+    //Check if y == 0
+    private boolean isGameOver(){
+
+    }
+
+    //Check how many circles, if they should have disappeared or if game over
+    private void checkCircles(){
+        isGameOver();
+
+
     }
 
 
-    //
+
+
+
+    //Gå igenom alla cirklar
+    public void updateCircles() {
+
+
+
+
+
+    }
+
+
+
 
 }

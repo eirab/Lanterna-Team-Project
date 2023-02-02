@@ -26,23 +26,9 @@ public class Position {
         this.y = y;
     }
 
-        /*
 
 
-    Position oldPosition = new Position(player.x, player.y);
-                switch (keyStroke.getKeyType()) {
-        case ArrowDown:
-            player.y += 2;
-            break;
-        case ArrowUp:
-            player.y -= 2;
-            break;
-        case ArrowRight:
-            player.x += 2;
-            break;
-        case ArrowLeft:
-            player.x -= 2;
-            break;
-    }*/
+
+
 
 }

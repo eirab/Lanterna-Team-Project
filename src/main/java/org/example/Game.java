@@ -3,7 +3,6 @@ package org.example;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.Terminal;
 
-import javax.swing.*;
 import java.io.IOException;
 
 public class Game {
@@ -14,8 +13,23 @@ public class Game {
     private Circle circle;
 
     public Game() throws IOException {
+        screen = new Screen();
+        setTerminal(screen.getTerminal());
+        player = new Player();
+        circle = new Circle();
+      initiliseGame();
+      pollKeystroke();
 
     }
+
+
+    private void initiliseGame(){
+
+        circle.initialiseCircles();
+
+    }
+
+
 
 
     public void pollKeystroke() throws IOException {
@@ -23,6 +37,7 @@ public class Game {
         boolean continueReadingInput = true;
         while (continueReadingInput) {
             screen.drawPlayer(player);
+            circle.updateCircles();
             screen.drawCircle(circle);
             KeyStroke keyStroke = null;
             do {
@@ -36,8 +51,6 @@ public class Game {
             } while (keyStroke == null);
 
             handleKeyStroke(keyStroke);
-
-
             terminal.flush();
 
 

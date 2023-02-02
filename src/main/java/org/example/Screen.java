@@ -5,6 +5,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Screen {
 
@@ -42,21 +43,27 @@ public class Screen {
 
     }
 
+    public void clearOldPosition(Circle... circles) throws IOException {
+        for (Circle circle: circles
+             ) { terminal.setCursorPosition(circle.getX(), circle.getY());
+            terminal.putCharacter(' ');
+            terminal.flush();
+
+        }
+
+
+    }
+
     public Terminal getTerminal() {
         return terminal;
     }
 
     public void drawCircle(Circle circle) throws IOException {
         terminal.setCursorPosition(circle.getX(), circle.getY());
-        terminal.putCharacter(circle.generateCircle());
         terminal.flush();
     }
 
-    public void clearOldCirclePosition(Circle circle) throws IOException {
-        terminal.setCursorPosition(circle.getX(), circle.getY());
-        terminal.putCharacter(' ');
-        terminal.flush();
-    }
+
 
 
 
