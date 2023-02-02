@@ -10,19 +10,20 @@ public class Screen {
 
     private DefaultTerminalFactory terminalFactory;
     private Terminal terminal;
-    public Screen(){
+
+    public Screen() {
 
         try {
             terminalFactory = new DefaultTerminalFactory();
             terminal = terminalFactory.createTerminal();
             terminal.setCursorVisible(false);
-        } catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Failed to initialise terminal");
         }
     }
 
 
-    public void putChar(char c){
+    public void putChar(char c) {
 
 
     }
@@ -41,8 +42,21 @@ public class Screen {
 
     }
 
-    public Terminal getTerminal(){
-        return terminal;}
+    public Terminal getTerminal() {
+        return terminal;
+    }
+
+    public void drawCircle(Circle circle) throws IOException {
+        terminal.setCursorPosition(circle.getX(), circle.getY());
+        terminal.putCharacter(circle.generateCircle());
+        terminal.flush();
+    }
+
+    public void clearOldCirclePosition(Circle circle) throws IOException {
+        terminal.setCursorPosition(circle.getX(), circle.getY());
+        terminal.putCharacter(' ');
+        terminal.flush();
+    }
 
 
 
@@ -69,4 +83,4 @@ public class Screen {
 
 
                 terminal.flush();*/
-            }
+}

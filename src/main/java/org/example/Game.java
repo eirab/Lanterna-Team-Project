@@ -11,6 +11,7 @@ public class Game {
     private Screen screen;
     private Terminal terminal;
     private Player player;
+    private Circle circle;
 
     public Game() throws IOException {
 
@@ -20,29 +21,31 @@ public class Game {
     public void pollKeystroke() throws IOException {
 
         boolean continueReadingInput = true;
-        while(continueReadingInput){
+        while (continueReadingInput) {
             screen.drawPlayer(player);
-        KeyStroke keyStroke = null;
-        do {
-            try {
-                Thread.sleep(5); // might throw InterruptedException
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            keyStroke = terminal.pollInput();
+            screen.drawCircle(circle);
+            KeyStroke keyStroke = null;
+            do {
+                try {
+                    Thread.sleep(5); // might throw InterruptedException
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                keyStroke = terminal.pollInput();
 
-        } while (keyStroke == null);
+            } while (keyStroke == null);
 
-       handleKeyStroke(keyStroke);
-
-
-        terminal.flush();
+            handleKeyStroke(keyStroke);
 
 
-    }}
+            terminal.flush();
+
+
+        }
+    }
 
     public void handleKeyStroke(KeyStroke key) throws IOException {
-        switch(key.getKeyType()){
+        switch (key.getKeyType()) {
             case ArrowLeft:
                 screen.clearOldPosition(player);
                 player.moveLeft();
@@ -56,20 +59,23 @@ public class Game {
             case ArrowRight:
                 screen.clearOldPosition(player);
                 player.moveRight();
-            break;
+                break;
         }
     }
 
+    public void setCircle(Circle circle) {
+        this.circle = circle;
+    }
 
-    public void setPlayer(Player player){
+    public void setPlayer(Player player) {
         this.player = player;
     }
 
     public void setTerminal(Terminal terminal) {
-                this.terminal = terminal;
+        this.terminal = terminal;
     }
 
     public void setScreen(Screen screen) {
-                this.screen = screen;
+        this.screen = screen;
     }
 }

@@ -6,26 +6,27 @@ public class Player {
     private Position position;
     private int score;
 
-    public Player(){
-        position = new Position(13, 13);
+    public Player() {
+        position = new Position(40, 50);
         score = 0;
 
     }
-    public int getX(){
+
+    public int getX() {
         return position.x;
     }
 
-    public int getY(){
+    public int getY() {
         return position.y;
     }
 
     public void moveLeft() {
-        position.setX(getX()-2);
+        position.setX(getX() - 2);
 
     }
 
     public void moveRight() {
-        position.setX(getX()+2);
+        position.setX(getX() + 2);
     }
 
 

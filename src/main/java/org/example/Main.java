@@ -14,6 +14,8 @@ public class Main {
         Game game = new Game();
         Screen screen = new Screen();
         Player player = new Player();
+        Circle circle = new Circle();
+        game.setCircle(circle);
         game.setScreen(screen);
         game.setTerminal(screen.getTerminal());
         game.setPlayer(player);
@@ -21,4 +23,4 @@ public class Main {
 
 
     }
-    }
+}
