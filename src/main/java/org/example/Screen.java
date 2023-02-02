@@ -1,5 +1,6 @@
 package org.example;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
@@ -11,6 +12,7 @@ public class Screen {
 
     private DefaultTerminalFactory terminalFactory;
     private Terminal terminal;
+    private TerminalSize terminalSize;
 
     public Screen() {
 
@@ -18,6 +20,7 @@ public class Screen {
             terminalFactory = new DefaultTerminalFactory();
             terminal = terminalFactory.createTerminal();
             terminal.setCursorVisible(false);
+            terminalSize = new TerminalSize(50, 50);
         } catch (IOException e) {
             System.out.println("Failed to initialise terminal");
         }
@@ -29,6 +32,14 @@ public class Screen {
 
     }
 
+    public int getRows(){
+        return terminalSize.getRows();
+    }
+
+    public int getColumns(){
+        return terminalSize.getColumns();
+    }
+
     //Draws player based on its position
     public void drawPlayer(Player player) throws IOException {
         terminal.setCursorPosition(player.getX(), player.getY());
@@ -36,6 +47,16 @@ public class Screen {
         terminal.flush();
     }
 
+    public void drawCircles(ArrayList<Circle> circles) throws IOException {
+        for (Circle circ: circles
+             ) { terminal.setCursorPosition(circ.getX(), circ.getY());
+            terminal.putCharacter(circ.circle);
+            terminal.flush();
+
+        }
+
+
+    }
     public void clearOldPosition(Player player) throws IOException {
         terminal.setCursorPosition(player.getX(), player.getY());
         terminal.putCharacter(' ');
@@ -50,6 +71,8 @@ public class Screen {
             terminal.flush();
 
         }
+
+
 
 
     }

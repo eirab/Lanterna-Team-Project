@@ -2,31 +2,32 @@ package org.example;
 
 public class Player {
 
+
     public final char PLAYER_CHARACTER = '☺';
-    private Position position;
+    private Position positionplayer;
     private int score;
 
-    public Player() {
-        position = new Position(40, 50);
+    public Player(int x, int y) {
+        positionplayer = new Position(x, y);
         score = 0;
 
     }
 
     public int getX() {
-        return position.x;
+        return positionplayer.x;
     }
 
     public int getY() {
-        return position.y;
+        return positionplayer.y;
     }
 
     public void moveLeft() {
-        position.setX(getX() - 2);
+        positionplayer.setX(getX() - 2);
 
     }
 
     public void moveRight() {
-        position.setX(getX() + 2);
+        positionplayer.setX(getX() + 2);
     }
 
 

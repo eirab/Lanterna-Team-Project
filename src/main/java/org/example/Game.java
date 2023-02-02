@@ -4,29 +4,45 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Game {
 
+    private static final int N_START_CIRCLES = 4;
     private Screen screen;
     private Terminal terminal;
     private Player player;
-    private Circle circle;
+
+    private ArrayList<Circle> circles;
 
     public Game() throws IOException {
         screen = new Screen();
         setTerminal(screen.getTerminal());
-        player = new Player();
-        circle = new Circle();
-      initiliseGame();
+        player = new Player(screen.getColumns()/2, screen.getRows() );
+
+       circles = initialiseCircles();
+       screen.drawCircles(circles);
       pollKeystroke();
 
     }
 
 
-    private void initiliseGame(){
+    private ArrayList<Circle> initialiseCircles(){
+        ArrayList<Circle> circList = new ArrayList<>();
+        for (int i = 0; i < N_START_CIRCLES; i++) {
+            Position position = new Position(getRandomX(), i);
+            Circle circle = new Circle(position);
+            circList.add(circle);
+        }
 
-        circle.initialiseCircles();
+    return circList;
 
+    }
+
+    private int getRandomX(){
+        Random x = new Random();
+        return x.nextInt(screen.getColumns());
     }
 
 
@@ -37,8 +53,7 @@ public class Game {
         boolean continueReadingInput = true;
         while (continueReadingInput) {
             screen.drawPlayer(player);
-            circle.updateCircles();
-            screen.drawCircle(circle);
+
             KeyStroke keyStroke = null;
             do {
                 try {
@@ -76,9 +91,9 @@ public class Game {
         }
     }
 
-    public void setCircle(Circle circle) {
-        this.circle = circle;
-    }
+
+
+
 
     public void setPlayer(Player player) {
         this.player = player;
