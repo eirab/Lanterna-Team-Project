@@ -23,13 +23,13 @@ public class Circle {
     }
 
     //METOD: kolla om äpplet blir fångad, eller ramlar i marken (och ska då försvinna)
-    /*public void fallingCircle() {
+    public void fallingCircle() {
         position.setY(getY() + 3);
         for (int y = 0; y < 81; y++) {
             terminal.setCirclePosition(5, row); // go to position(column, row)
             terminal.putCharacter('O');
         }
-    }*/
+    }
 
 
     //METOD som loopar och genererar fler äpplen hela tiden
